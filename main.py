@@ -8,7 +8,7 @@ class Bill:
         self.period = period
 
 
-class Flatemate:
+class Flatmate:
     """
     Creates a flatmate person who lives in the flat and pays a share of the bill.
     """
@@ -37,8 +37,8 @@ class PdfReport:
 
 
 the_bill = Bill(amount=120, period="March 2021")
-jhon = Flatemate(name="Jhon", days_in_house=20)
-marry = Flatemate(name="Marry", days_in_house=25)
+jhon = Flatmate(name="Jhon", days_in_house=20)
+marry = Flatmate(name="Marry", days_in_house=25)
 
 print("Jhon pays: ", jhon.pays(bill=the_bill, flatmate2=marry))
 print("Merry pays: ", marry.pays(bill=the_bill, flatmate2=jhon))

@@ -71,12 +71,21 @@ class PdfReport:
         webbrowser.open('file://' + os.path.realpath(self.filename))
 
 
-the_bill = Bill(amount=120, period="April 2021")
-jhon = Flatmate(name="Jhon", days_in_house=20)
-marry = Flatmate(name="Marry", days_in_house=25)
+bill_amount = float(input("Hey user, enter the bill amount: "))
+bill_period = input("What is the bill period? E.g. December 2020: ")
 
-print("Jhon pays: ", jhon.pays(bill=the_bill, flatmate2=marry))
-print("Merry pays: ", marry.pays(bill=the_bill, flatmate2=jhon))
+flatmate1_name = input("What is your name? ")
+days_in_house1 = int(input(f"How many days did {flatmate1_name} stay in the house during the bill period? "))
 
-pdf_report = PdfReport(filename="Report1.pdf")
-pdf_report.generate(flatmate1=jhon, flatmate2=marry, bill=the_bill)
+flatmate2_name = input("What is the name of the other flatmate? ")
+days_in_house2 = int(input(f"How many days did {flatmate2_name} stay in the house during the bill period? "))
+
+the_bill = Bill(amount=bill_amount, period=bill_period)
+flatmate1 = Flatmate(name=flatmate1_name, days_in_house=days_in_house1)
+flatmate2 = Flatmate(name=flatmate2_name, days_in_house=days_in_house2)
+
+print(f"{flatmate1_name} pays: ", flatmate1.pays(bill=the_bill, flatmate2=flatmate2))
+print(f"{flatmate2_name} pays: ", flatmate2.pays(bill=the_bill, flatmate2=flatmate1))
+
+pdf_report = PdfReport(filename=f"Report_{the_bill.period}.pdf")
+pdf_report.generate(flatmate1=flatmate1, flatmate2=flatmate2, bill=the_bill)
